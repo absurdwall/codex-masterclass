@@ -1,24 +1,22 @@
 # Codex Masterclass
 
-An English, single-page scrolling session companion. This first version emphasizes the proposed learning arc, section goals, outcomes, and timing rather than a finished lecture.
+A content-first, six-page static learning guide: a short course map and five topic pages. Plain HTML/CSS/JavaScript, no build step or runtime dependencies.
 
-## Preview
+## Pages
 
-Run `python3 -m http.server 8000` in this directory and open http://localhost:8000. There is no build step or package installation.
+- index.html: course map
+- models.html: model/effort/speed, benchmark comparison, API costs, recommendations
+- workspace.html: project/chat/folder/repository/worktree concepts and settings
+- pet.html: exact prepared prompt, concept-selection checkpoint, optional follow-along
+- dots-space.html: concepts, practical uses, and scheduled-task distinctions
+- build-demo.html: personal app walkthroughs and bounded computer-use demo
 
-## Files
+Run `python3 -m http.server 8000` to preview. All links are relative so the site works at the GitHub Pages project path. `app.js` enhances the model effort selector and prompt-copy button. Content and the default medium-effort table are available without JavaScript.
 
-- `index.html`: all session content and resource links; fully readable without JavaScript
-- `styles.css`: responsive layout, CSS illustration, reduced-motion and print styles
-- `app.js`: active-section navigation indicator only
-- `.nojekyll`: direct static publishing on GitHub Pages
+## Data provenance
 
-The page uses six sections totaling 60 minutes. All anchors work natively and support browser Back/Forward. No slide-navigation keys or presenter controls are used. Fonts are requested from Google Fonts, with local sans-serif fallbacks.
+Benchmark snapshot: 30 September 2026, Artificial Analysis Intelligence Index v4.3.2. Exact model-effort configurations and source links appear on models.html. Claude configurations include adaptive reasoning with default fallback. Scores are not percentages. Benchmark task cost is not an estimate of a user's task or subscription billing. API prices are a separate table with provider sources.
 
-## Before teaching
+## Publication
 
-Confirm the timing, exact pet exercise, dots/Space walkthrough, DIY app example, and free non-wagering card game. Verify demo-account feature availability and prepare a recording fallback. Official guide links are included, but this draft deliberately does not fix current model pricing or account-specific availability.
-
-## Hosting
-
-Publish the selected branch's root with GitHub Pages. All asset references are relative and work at `/codex-masterclass/`. No runtime secrets, server, analytics, third-party scripts, or build services are needed. Repository and Pages changes require separate publication coordination.
+GitHub Pages source: codex/session-outline branch, root. Preserve main and the original course repository. Check all local page anchors, JavaScript syntax, published asset content, actual navigation, table effort changes, prompt copy, and narrow-width layout when supported.
