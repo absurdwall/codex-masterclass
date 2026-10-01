@@ -13,7 +13,7 @@ The five core topics total 60 minutes: models (12), work organization (10), pet 
 - dots-space.html: concise live-session lesson
 - dots-space-guide.html: detailed delegation, environment, Pages, sharing, and worked examples
 - build-demo.html: personal apps and bounded computer-use demonstration
-- further-uses.html: CLI, non-interactive mode, Developer Commands, Agents API, and research workflows
+- further-uses.html: CLI, non-interactive mode, Developer Commands, and Agents API
 
 Shared typography is in styles.css. The reading pages use assets/reading.css. The Octopus demo uses assets/pet-demo.css and assets/pet-demo.js. Preserve the original assets/octopus.webp; it is the user’s actual pet.
 
@@ -25,6 +25,6 @@ Check local links and fragments, one main/h1 per page, duplicate IDs, JavaScript
 
 ## Sources and publication
 
-Source dates and direct links appear with the relevant lesson. Model data is a dated snapshot, not a guarantee of current pricing or availability. AA broad-intelligence scores are not coding percentages. Benchmark cost, token unit prices, and subscription billing are separate quantities. Research acceleration is presented as the official article and workflow, not a separate product switch.
+Source dates and direct links appear with the relevant lesson. Model data is a dated snapshot, not a guarantee of current pricing or availability. AA broad-intelligence scores are not coding percentages. Benchmark cost, token unit prices, and subscription billing are separate quantities.
 
 Publish only scoped approved changes. Preserve main and the original course repository. Verify the remote commit and compare deployed file bytes with the reviewed local versions; then inspect the actual rendered site and interactive behavior.
