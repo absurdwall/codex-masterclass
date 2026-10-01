@@ -12,7 +12,8 @@ The five core topics total 60 minutes: models (12), work organization (10), pet 
 - pet.html: prepared prompt and the actual interactive Octopus sprite
 - dots-space.html: concise live-session lesson
 - dots-space-guide.html: detailed delegation, environment, Pages, sharing, and worked examples
-- build-demo.html: personal apps and bounded computer-use demonstration
+- build-demo.html: personal apps, bounded computer use, and scheduled-task introduction
+- scheduled-tasks-guide.html: setup, practical tips, and three copyable English classroom exercises
 - further-uses.html: CLI, non-interactive mode, Developer Commands, and Agents API
 
 Shared typography is in styles.css. The reading pages use assets/reading.css. The Octopus demo uses assets/pet-demo.css and assets/pet-demo.js. Preserve the original assets/octopus.webp; it is the user’s actual pet.
