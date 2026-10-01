@@ -18,7 +18,7 @@
   const text=s=>stage.append(make('p',s));
   const code=s=>stage.append(make('pre',s,'wb-output'));
   const answer=(label,right,message)=>choices.append(button(label,()=>{feedback.textContent=message;if(right){const next=button('Continue →',()=>{step++;render(true);});choices.replaceChildren(next);next.focus();}},true));
-  const steps=['Inspect the prepared starting point','Give one bounded assignment','Inspect the first proposed change','Review the correction','Explore isolated workspaces','Bring the result back to the project'];
+  const steps=['Inspect the prepared starting point','Ask for one small change','Inspect the first proposed change','Review the correction','Explore isolated workspaces','Bring the result back to the project'];
   function render(focus=false){
     count.textContent=`Step ${step+1} of ${steps.length}`;heading.textContent=steps[step];stage.replaceChildren();choices.replaceChildren();feedback.textContent='';
     if(step===0){
@@ -55,7 +55,7 @@
       if(revision===2&&!launchedC)choices.append(button('Illustrate a new Task C from v2',()=>{launchedC=true;render(true);feedback.textContent='Only the new task starts from v2. Combining A and B changes still needs deliberate Git review and integration.';},true));
       choices.append(button('Continue to the review handoff →',()=>{step++;render(true);}));
     }else{
-      text('A useful handoff has three durable pieces. None is saved automatically by this illustration.');
+      text('Leave three things for the next person or task. This illustration does not save them for you.');
       const list=make('ol');['GitHub: the reviewed code change or draft PR, with test evidence.','Space: current status, what was decided, what remains open, and links to the change.','dot: the ongoing responsibility, next action, and any decision it needs from you.'].forEach(s=>list.append(make('li',s)));stage.append(list);
       code('EXAMPLE PROJECT UPDATE\nStatus: filter change ready for review\nEvidence: link to actual diff and test results\nOpen question: keep the filter selected after reload?\nNext: human review; then explicitly authorized integration');
       feedback.textContent='Walkthrough complete. You prepared, delegated, checked a failure, reviewed a correction, and kept project context separate from task files.';

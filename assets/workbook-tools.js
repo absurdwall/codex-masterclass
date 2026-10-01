@@ -213,8 +213,8 @@
       lengthField.label.textContent = `Practice duration (${exercise.unit})`;
       lengthHint.textContent = `Choose 1–${exercise.max} ${exercise.unit.toLowerCase()} for this classroom practice. This is a practice range, not a product limit.`;
       boundary.textContent = current === 2
-        ? 'The deal watch keeps its four daily checks: 00:00, 06:00, 12:00, and 18:00 in your chosen zone. Source checks, quiet alerts, deduplication, and the no-purchase rule stay in the preview.'
-        : 'The selected exercise keeps its sources, quality bar, output format, deduplication, and blocker-reporting rules. Only the displayed timing and finite duration change.';
+        ? 'The deal watch keeps its four daily checks: 00:00, 06:00, 12:00, and 18:00 in your chosen zone. Source checks, quiet alerts, checks for repeat deals, and the no-purchase rule stay in the preview.'
+        : 'The selected exercise keeps its sources, quality bar, output format, checks for repeats, and rules for reporting missing access. Only the displayed timing and finite duration change.';
       render(message);
     }
 
@@ -253,7 +253,7 @@
         check: 'Use this only for the actual empty-input bug described in bug.md. Inspect the diff and test result before accepting a change.' }
     ];
     let revision = 0;
-    const root = panel('command-workbook', 'Choose a command, inspect the boundary',
+    const root = panel('command-workbook', 'Choose a command and check what it can change',
       'Explore the three exact examples from this lesson. This generates text only: no terminal opens, no code runs, and no repository or report file is changed here.');
     const select = el('select');
     examples.forEach((example, index) => select.append(option(String(index), example.name)));

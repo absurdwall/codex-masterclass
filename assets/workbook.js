@@ -77,15 +77,16 @@
     row.append(state,b);const end=main.querySelector('.page-turn')||main.querySelector('footer');end?end.before(row):main.append(row);document.addEventListener('workbook-progress',render);render();
   }
   if(page==='index.html'){
-    const box=panel('Choose a route through the course','Pick what you want to do. Your route changes; every lesson remains available below.');
+    const box=panel('Choose your path','Follow the class in order, or choose the task you want to try.');
     const routes=[['class','Prepare for the session',[0,1,2,3,4]],['make','Make something useful',[0,2,4]],['delegate','Delegate ongoing work',[0,3,4]],['code','Work with code',[0,1,4]]];
     const controls=el('div',{class:'wb-controls'}),output=el('div',{class:'wb-route'});let routeKey='class',routeButton=null;const start=el('a',{class:'wb-button',href:'models.html'},'Start this route');
-    function route(key,b){routeKey=key;routeButton=b;markGroup(controls,b);const data=routes.find(r=>r[0]===key);output.replaceChildren(el('h3',{},data[1]),el('ol',{},data[2].map(i=>el('li',{},el('a',{href:topics[i][2]},topics[i][1])))));if(key==='delegate')output.append(p('Then try one scheduled-task exercise from Topic 05.'));if(key==='code')output.append(p('Continue with the optional CLI and Agents API material in Topic 06.'));start.href=topics[data[2].find(i=>!reviewed.includes(topics[i][0]))??data[2][0]][2];start.textContent='Open next topic in this route';}
+    function route(key,b){routeKey=key;routeButton=b;markGroup(controls,b);const data=routes.find(r=>r[0]===key);output.replaceChildren(el('h3',{},data[1]),key==='class'?p('Follow Topics 01–05 below. The detailed guides and Topic 06 are optional reading for later.'):el('ol',{},data[2].map(i=>el('li',{},el('a',{href:topics[i][2]},topics[i][1])))));if(key==='delegate')output.append(p('Then try one scheduled-task exercise from Topic 05.'));if(key==='code')output.append(p('Continue with the optional CLI and Agents API material in Topic 06.'));start.href=topics[data[2].find(i=>!reviewed.includes(topics[i][0]))??data[2][0]][2];start.textContent='Open next topic in this route';}
     routes.forEach(([key,title])=>{const b=button(title,()=>route(key,b),true);b.setAttribute('aria-pressed','false');controls.append(b);});
     const progress=el('progress',{max:'5',value:'0','aria-label':'Core topics marked reviewed'}),count=p(''),privacy=el('p',{class:'wb-note'});const checks=el('div',{class:'wb-checks'});
     topics.forEach(([id,title])=>{const input=el('input',{type:'checkbox','aria-label':'Mark '+title+' reviewed'});input.addEventListener('change',()=>setReviewed(id,input.checked));checks.append(el('label',{},input,title));input.dataset.topic=id;});
     function render(){progress.value=reviewed.length;count.textContent=reviewed.length+' / 5 core topics reviewed';checks.querySelectorAll('input').forEach(i=>i.checked=reviewed.includes(i.dataset.topic));privacy.textContent=persistent?'Review markers are saved only in this browser. Prompt inputs are not saved.':'Browser storage is unavailable; review markers last only for this page session.';if(routeButton)route(routeKey,routeButton);}
-    box.append(controls,output,start,el('hr'),el('div',{class:'wb-progress'},count,progress),checks,el('div',{class:'wb-actions'},button('Reset review markers',()=>{reviewed=[];saveProgress();},true)),privacy);
+    const tracker=el('details',{},el('summary',{},'Track the topics you have reviewed'),checks,el('div',{class:'wb-actions'},button('Reset review markers',()=>{reviewed=[];saveProgress();},true)),privacy);
+    box.append(controls,output,start,el('hr'),el('div',{class:'wb-progress'},count,progress),tracker);
     placeAfter(box,'.intro');document.addEventListener('workbook-progress',render);render();route('class',controls.firstElementChild);
   }
   if(page==='models.html'){
@@ -93,7 +94,7 @@
     const match=source&&source.match(/const models=(\[.*?\]);const efforts=/s);
     if(match){
       const models=JSON.parse(match[1]),efforts=['low','medium','high','xhigh','max','none'];
-      const box=panel('Compare two model + effort choices','Change either configuration and see the measured trade-off. This uses the same dated source data as the lesson, not a live benchmark or task-price estimate.');
+      const box=panel('Compare two model + effort choices','Choose two model and effort combinations. See how their published scores and benchmark costs compare; this does not predict the price of your own task.');
       const presets=el('div',{class:'wb-controls'}),grid=el('div',{class:'wb-grid'}),summary=el('div',{class:'wb-compare-summary',role:'status','aria-live':'polite'});
       const sides=['A','B'].map((letter,i)=>{const model=field('Model '+letter,'select',i?'2':'1',models.map((m,n)=>[String(n),m.name]));const effort=field('Effort '+letter,'select','1',efforts.map((e,n)=>[String(n),e==='none'?'Non-reasoning':e]));const output=el('div',{class:'wb-output'});const card=el('div',{class:'wb-stack'},model.wrap,effort.wrap,output);grid.append(card);return {model:model.input,effort:effort.input,output};});
       const usd=v=>v===null?'Not measured':'$'+Number(v).toFixed(v<.01?4:2);
