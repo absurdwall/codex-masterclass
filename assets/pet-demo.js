@@ -10,6 +10,7 @@
   const idleDurations = [280, 110, 110, 140, 140, 320];
   let paused = reduced.matches;
   let timer = null;
+  let pointerRestTimer = null;
   let idleFrame = 0;
   let pointerInside = false;
   let lastDirection = -1;
@@ -37,16 +38,18 @@
       show(9 + Math.floor(direction / 8), direction % 8, `look-${direction}`);
       lastDirection = direction;
     }
-    if (direct) status.textContent = `Octopus is looking ${label}.`;
+    if (direct) { clearTimeout(pointerRestTimer); status.textContent = `Octopus is looking ${label}.`; }
   }
   function updateToggle() {
     toggle.textContent = paused ? 'Play animation' : 'Pause animation';
     toggle.setAttribute('aria-pressed', String(paused));
     demo.dataset.paused = String(paused);
   }
-  stage.addEventListener('pointermove', event => {
+  document.addEventListener('pointermove', event => {
     if (event.pointerType === 'touch' || paused) return;
     pointerInside = true;
+    clearTimeout(pointerRestTimer);
+    pointerRestTimer = setTimeout(() => { pointerInside = false; idle(); }, 1600);
     const rect = sprite.getBoundingClientRect();
     const dx = event.clientX - (rect.left + rect.width / 2);
     const dy = event.clientY - (rect.top + rect.height / 2);
@@ -56,7 +59,7 @@
     const angle = (Math.atan2(dx, -dy) + 2 * Math.PI) % (2 * Math.PI);
     look(Math.round(angle / (2 * Math.PI / 16)) % 16);
   });
-  stage.addEventListener('pointerleave', () => { pointerInside = false; idle(); });
+  document.addEventListener('pointerleave', () => { clearTimeout(pointerRestTimer); pointerInside = false; idle(); });
   stage.addEventListener('keydown', event => {
     const choices = {ArrowUp:[0,'up'],ArrowRight:[4,'right'],ArrowDown:[8,'down'],ArrowLeft:[12,'left']};
     if (!choices[event.key]) return;
@@ -69,12 +72,14 @@
     });
   });
   demo.querySelector('[data-idle]').addEventListener('click', () => {
+    clearTimeout(pointerRestTimer);
     pointerInside = false;
     status.textContent = paused ? 'Animation is paused.' : 'Octopus is resting.';
     idle();
   });
   toggle.addEventListener('click', () => {
     paused = !paused;
+    clearTimeout(pointerRestTimer);
     stopTimer();
     pointerInside = false;
     updateToggle();
@@ -83,6 +88,7 @@
   });
   reduced.addEventListener('change', event => {
     paused = event.matches;
+    clearTimeout(pointerRestTimer);
     stopTimer();
     pointerInside = false;
     updateToggle();
@@ -90,7 +96,7 @@
     if (!paused) idle();
   });
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stopTimer();
+    if (document.hidden) { stopTimer(); clearTimeout(pointerRestTimer); pointerInside = false; }
     else if (!paused && !pointerInside) idle();
   });
   const atlas = new Image();
