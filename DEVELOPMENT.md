@@ -29,3 +29,9 @@ Check local links and fragments, one main/h1 per page, duplicate IDs, JavaScript
 Source dates and direct links appear with the relevant lesson. Model data is a dated snapshot, not a guarantee of current pricing or availability. AA broad-intelligence scores are not coding percentages. Benchmark cost, token unit prices, and subscription billing are separate quantities.
 
 Publish only scoped approved changes. Preserve main and the original course repository. Verify the remote commit and compare deployed file bytes with the reviewed local versions; then inspect the actual rendered site and interactive behavior.
+
+## Interactive workbook
+
+All nine pages load assets/workbook.js/css and assets/workbook-tools.js/css. The tools progressively enhance the static reference: routes and locally saved review markers, model comparisons, scenarios, prompt customization, a local card-turn simulation, and CLI exploration. They do not send prompts or create/run agent tasks. Only review markers persist under the site-specific localStorage key; editable prompts remain in page memory.
+
+Keep the original model measurements and prepared prompts as the source of truth. Missing model measurements must remain unmeasured. Exercises are illustrative, with explicit reset and copy behavior. Verify repeated inputs, blank/invalid values, copy races, keyboard focus, and local-storage denial as well as the first successful click.

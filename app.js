@@ -23,7 +23,12 @@ if (effortSelect) {
 document.querySelectorAll('[data-copy]').forEach(button => {
   button.addEventListener('click', async () => {
     const target = document.getElementById(button.dataset.copy);
-    try { await navigator.clipboard.writeText(target.textContent); button.textContent = 'Copied'; }
-    catch { button.textContent = 'Select the prompt and copy'; }
+    const payload = target.textContent;
+    try {
+      await navigator.clipboard.writeText(payload);
+      if (target.textContent === payload) button.textContent = 'Copied';
+    } catch {
+      if (target.textContent === payload) button.textContent = 'Select the prompt and copy';
+    }
   });
 });

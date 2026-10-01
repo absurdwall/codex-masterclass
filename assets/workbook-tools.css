@@ -1,0 +1,12 @@
+/* Small additions to the shared workbook components. No motion or network assets. */
+.wb-tools .wb-tools-controls { display: grid; align-items: start; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.wb-tools .wb-tools-wide { grid-column: 1 / -1; }
+.wb-tools [hidden] { display: none !important; }
+.wb-tools .wb-field { min-width: 0; }
+.wb-tools .wb-tools-output { display: block; width: 100%; max-width: 100%; box-sizing: border-box; resize: vertical; min-height: 8rem; font: 0.84rem/1.6 var(--mono, ui-monospace, SFMono-Regular, Consolas, monospace); white-space: pre-wrap; overflow-wrap: anywhere; }
+.wb-tools .wb-tools-status { min-height: 1.5em; }
+.wb-tools .wb-tools-explanation { margin: 1rem 0; }
+.wb-tools .wb-tools-explanation p { margin: 0.6rem 0; }
+.wb-tools [aria-invalid="true"] { outline: 2px solid #9b302a; outline-offset: 2px; }
+.wb-tools button:disabled { cursor: not-allowed; opacity: 0.55; }
+@media (max-width: 600px) { .wb-tools .wb-tools-controls { grid-template-columns: minmax(0, 1fr); } }
