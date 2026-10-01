@@ -12,9 +12,9 @@ The five core topics total 60 minutes: models (12), work organization (10), pet 
 - pet.html: prepared prompt and the actual interactive Octopus sprite
 - dots-space.html: concise live-session lesson
 - dots-space-guide.html: detailed delegation, environment, Pages, sharing, and worked examples
-- build-demo.html: personal apps, bounded computer use, and scheduled-task introduction
+- build-demo.html: reusable Codex Cloud environments, an illustrative isolated-task walkthrough, personal apps, computer use, and scheduled tasks
 - scheduled-tasks-guide.html: setup, practical tips, and three copyable English classroom exercises
-- further-uses.html: CLI, non-interactive mode, Developer Commands, and Agents API
+- further-uses.html: project architecture, MCP Events, CLI, non-interactive mode, Developer Commands, and Agents API
 
 Shared typography is in styles.css. The reading pages use assets/reading.css. The Octopus demo uses assets/pet-demo.css and assets/pet-demo.js. Preserve the original assets/octopus.webp; it is the user’s actual pet.
 
@@ -35,3 +35,7 @@ Publish only scoped approved changes. Preserve main and the original course repo
 All nine pages load assets/workbook.js/css and assets/workbook-tools.js/css. The tools progressively enhance the static reference: routes and locally saved review markers, model comparisons, scenarios, prompt customization, a local card-turn simulation, and CLI exploration. They do not send prompts or create/run agent tasks. Only review markers persist under the site-specific localStorage key; editable prompts remain in page memory.
 
 Keep the original model measurements and prepared prompts as the source of truth. Missing model measurements must remain unmeasured. Exercises are illustrative, with explicit reset and copy behavior. Verify repeated inputs, blank/invalid values, copy races, keyboard focus, and local-storage denial as well as the first successful click.
+
+## Cloud teaching walkthrough
+
+assets/cloud-learning.js/css provide a local six-step demonstration, not a provisioning client. It uses predefined code and test results to teach preparation, bounded delegation, failure review, and workspace isolation. Real workshop repository, starting commit, and canonical published environment/configuration remain pending; never present the illustrative worksheet as an executable import. Republished preparation affects future tasks, not existing workspaces. Built-in GitHub events cover PR activity; the issue-created architecture is explicitly a custom MCP-plugin example.
