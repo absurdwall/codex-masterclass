@@ -88,7 +88,7 @@
   }
 
   function buildSchedulePractice() {
-    const anchor = document.getElementById('setup');
+    const anchor = document.getElementById('setup') || document.getElementById('basics');
     const sourceIds = ['task-brief', 'task-read', 'task-deal'];
     const sources = sourceIds.map(id => document.getElementById(id));
     if (!anchor || sources.some(source => !source) || document.getElementById('schedule-workbook')) return;
