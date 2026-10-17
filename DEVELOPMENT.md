@@ -1,6 +1,6 @@
 # Codex Masterclass
 
-A content-first static learning guide. Plain HTML/CSS/JavaScript, no build step or runtime dependencies. GitHub Pages hosts the codex/session-outline branch at its root.
+A content-first static learning guide. Plain HTML/CSS/JavaScript, no build step or runtime dependencies. GitHub Pages hosts the main branch at its root.
 
 ## Course structure
 
